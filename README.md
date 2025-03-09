@@ -2,7 +2,7 @@
 This project was created with the goal of exploring and implementing the essential parts of an IoT system, using the greenhouse monitoring case. It provides real-time monitoring of devices through a web dashboard and also access to historical data.
 
 ## Stack and Technologies
-The system covers communication between devices, data processing in the back-end, a management interface in the front-end, infrastructure setup for deployment, and the firmware necessary for the devices.
+The system covers communication between devices, data processing and storage, a real-time management interface, infrastructure setup for deployment, and the firmware necessary for the devices.
 
 ### Back-end (Go, Redis, MQTT, WebSocket, PostgreSQL)
 For the back-end, I chose to use microservices in Go to ensure scalability and performance. The architecture consists of:

@@ -1,0 +1,71 @@
+services:
+  mqtt-broker:  
+    image: eclipse-mosquitto
+    restart: always
+    volumes:
+      - ./volumes/mosquitto/config:/mosquitto/config
+      - ./volumes/mosquitto/data:/mosquitto/data
+      - ./volumes/mosquitto/log:/mosquitto/log
+    ports:
+      - 1883:1883
+
+  db:
+    image: postgres
+    restart: always
+    container_name: db
+    environment:
+      POSTGRES_USER: userdev
+      POSTGRES_PASSWORD: 123456
+    networks:
+      - back-end
+    volumes:
+      - ./volumes/postgres-data:/var/lib/postgres/data
+  
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - back-end
+
+  api-service:
+    build:
+      context: ./back-end  
+      dockerfile: cmd/api_service/Dockerfile  
+    container_name: api-service
+    restart: always
+    networks:
+      - back-end
+      - front-end
+
+  save-data-service:
+    build:
+      context: ./back-end  
+      dockerfile: cmd/save_data_service/Dockerfile  
+    container_name: save-data-service
+    restart: always
+    networks:
+      - back-end
+
+  data-stream-service:
+    build:
+      context: ./back-end  
+      dockerfile: cmd/data_stream_service/Dockerfile  
+    container_name: data-stream-service
+    restart: always
+    networks:
+      - back-end
+
+  interface:
+   build:
+    context: ./front
+    dockerfile: 
+
+networks:
+  back-end:
+    driver: bridge
+
+  front-end:
+    driver: bridge

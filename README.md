@@ -1,38 +1,39 @@
 # 🌿 IoT Greenhouse - 🏗 Work in Progress
-This project was created with the goal of exploring and implementing the essential parts of an IoT system, using the greenhouse monitoring case. It provides real-time monitoring of devices through a web dashboard and also access to historical data.
+This project was created with the goal of exploring and implementing the key components of an IoT system, using a greenhouse monitoring scenario. 
+It offers real-time device monitoring through a web dashboard, as well as access to historical data.
 
 ## Stack and Technologies
-The system covers communication between devices, data processing and storage, a real-time management interface, infrastructure setup for deployment, and the firmware necessary for the devices.
+The system covers communication between devices, data processing and storage, a real-time management interface, infrastructure setup for deployment, and the firmware required for the devices.
 
-### Back-end (Go, Redis, MQTT, WebSocket, PostgreSQL)
-For the back-end, I chose to use microservices in Go to ensure scalability and performance. The architecture consists of:
+### Back-end (Node.js, TypeScript, NestJS, Redis, MQTT, WebSocket, Prisma, PostgreSQL)
+For the back-end, I developed two services using Node.js and TypeScript — one structured with NestJS, and the other implemented with a custom setup without a framework. 
+This approach ensures scalability, performance, and flexibility according to each service's needs.
+The architecture consists of:
 
-* save_data_service: Receives device data via MQTT and stores it in the PostgreSQL database.
-* stream_data_service: Streams real-time device data to clients via WebSocket.
-* api_service: Manages data queries and user authentication.
+- device_service: Receives data from devices via MQTT and stores it in a PostgreSQL database. It also streams real-time device data to clients via WebSocket.
+- api_service: Handles data queries and user authentication.
 
-For session control, I used Redis and the PostgreSQL database to store login and authentication information.
+Session management is handled using Redis, and login/authentication data is stored in PostgreSQL.
 
-<p align="left" >
-  <img src="https://skillicons.dev/icons?i=go,redis,postgresql" />
-</p>
+<img src="https://skillicons.dev/icons?i=nodejs,ts,nestjs,redis,prisma,postgres" />
 
-### Front-end (Next.js, TypeScript, Chakra UI)
-On resource-limited devices, server-side rendering can improve user experience. To achieve this goal, I used Next.js and Chakra UI as the component library.
-
-<p align="left">
-  <img src="https://skillicons.dev/icons?i=nextjs,typescript" />
-  <img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/chakra_ui.png" width="50" height="auto"/>
-</p>
-
-### Infrastructure (Docker Compose, Traefik, Eclipse Mosquitto, Python)
-All services are containerized with Docker, and orchestration is simplified using Docker Compose and Traefik. Eclipse Mosquitto was chosen as the MQTT broker, while Python is used for automation scripts and auxiliary tasks.
+### Front-end (Next.js, TypeScript, Shadcn/ui, Tailwind)
+For resource-constrained devices, server-side rendering (SSR) can enhance the user experience. To achieve this, I used Next.js, Tailwind, and Shadcn/ui as the component library.
 
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=docker" /> 
-  <img src="media/icons/traefik.logo-dark.png" width="50" height="auto"/>
+  <img src="https://skillicons.dev/icons?i=nextjs,typescript,tailwind" />
+  <img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/shadcn_ui.png" width="50" height="auto"/>
+</p>
+
+### Infrastructure (Docker Compose, Nginx, Eclipse Mosquitto, Python, Turborepo)
+All services are containerized using Docker, with orchestration handled via Docker Compose. Nginx is used as a reverse proxy, while Eclipse Mosquitto acts as the MQTT broker. Python is utilized for automation scripts and auxiliary tasks. 
+Additionally, Turborepo is employed to manage the monorepo structure, enhancing code organization and improving build performance across the project.
+
+<p align="left">
+  <img src="https://skillicons.dev/icons?i=docker,nginx" /> 
   <img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/mosquitto.png" width="50" height="auto"/>
   <img src="https://skillicons.dev/icons?i=python" />
+  <img src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/turborepo.png" width="50" height="auto"/>
 </p>
 
 ### Firmware (ESP32, C++, ESP-IDF)
